@@ -2,8 +2,10 @@
 
 // ignore_for_file: deprecated_member_use
 
+import 'package:chamber_of_commerce/pages/user/Company.dart';
 import 'package:chamber_of_commerce/pages/user/Home.dart';
 import 'package:chamber_of_commerce/widgets/BottomNavBar.dart';
+import 'package:chamber_of_commerce/widgets/CompanyDescription.dart';
 import 'package:chamber_of_commerce/widgets/CustomBottomNavBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,13 +33,10 @@ class CompanyState extends State<CompanyDetail> {
     final mobile = widget.data['Mobile Phone'];
     final email = widget.data['E-mail'];
     final website = widget.data['Web'];
-    // final sector = data['Sector'];
-    // final subSector = data['Sub Sector'];
+    final isAdv = widget.data['Is_adv'] == "True";
+  
     var scaffold = Scaffold(
-      //  drawer:const BackButton(
-      //   //  backgroundColor: Colors.white,
-      //  ),
-      
+    
        
 
 
@@ -79,7 +78,7 @@ class CompanyState extends State<CompanyDetail> {
         centerTitle: true,
       ),
       
-      body: Padding(padding: EdgeInsets.all(10),
+      body: isAdv?CompanyDescription(detail: widget.data): Padding(padding: EdgeInsets.all(10),
       child:  Container(
          decoration: BoxDecoration(
     

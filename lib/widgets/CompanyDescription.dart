@@ -7,6 +7,7 @@ import 'package:chamber_of_commerce/pages/user/Almanac_Options/Fintech_Options.d
 import 'package:chamber_of_commerce/pages/user/Almanac_Options/Insurance_Options.dart';
 import 'package:chamber_of_commerce/pages/user/Almanac_Options/MicroFinance_Options.dart';
 import 'package:chamber_of_commerce/pages/user/Almanac_Options/Capital_Goods_Options.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:chamber_of_commerce/pages/user/Home.dart';
 import 'package:chamber_of_commerce/widgets/BottomNavBar.dart';
@@ -19,28 +20,53 @@ import 'package:chamber_of_commerce/widgets/VideoPlayer.dart';
 import 'package:share_plus/share_plus.dart';
 
 
-class Company extends StatefulWidget {
+class CompanyDescription extends StatefulWidget {
   final Map<dynamic, dynamic> detail;
-  Company({super.key,required this.detail});
+  CompanyDescription({super.key,required this.detail});
 
   @override
-  State<Company> createState() => _CompanyState();
+  State<CompanyDescription> createState() => _CompanyDescriptionState();
 }
 
-class _CompanyState extends State<Company> {
+class _CompanyDescriptionState extends State<CompanyDescription> {
+   Future<String> storeImageInFirebase(String fileName) async {
+  try {
+    final storage  = FirebaseStorage.instance.ref();
+       final images = storage.child('media');
+       final imageRef = images.child(fileName);
+       	
+
+
+
+       final networkImageUrl = await imageRef.getDownloadURL();
+      //  print(networkImageUrl);
+    return networkImageUrl;
+  } on FirebaseException catch (e) {
+    // Handle potential errors
+    print('Error storing image: ${e.code} - ${e.message}');
+    return ''; // Or throw an exception for further handling
+  }
+}  
   @override
   Widget build(BuildContext context) {
-    String sector = widget.detail["sector"].toString();
-    String  name =widget.detail["name"].toString();
+    // String sector = widget.detail["sector"].toString();
+    String  name =widget.detail['Account Name'].toString();
     String logo = widget.detail["logo"].toString();
-    String  profile = widget.detail["profile"].toString();
-    String image = widget.detail["adv_image"].toString();
-    String video = widget.detail["adv_video"].toString();
-    String tel = widget.detail["tel"].toString();
-    String email = widget.detail["email"].toString();
+    String  profile = '';
+    String image = widget.detail["Image"].toString();
+    // print('test');
+    // print(image);
+    String video = widget.detail["Video"].toString();
+    String tel = widget.detail["Tel"].toString();
+    String email = widget.detail["E-mail"].toString();
     
-    final website = widget.detail["website"];
-    String fax = widget.detail["fax"].toString();
+    final website = widget.detail["Web"];
+    final sector = widget.detail["Field Of Business"];
+    final sub_sector = widget.detail["SIT+A1:I15802C Description"];
+    // String fax = widget.detail["fax"].toString();
+     Future<String> imageUrlFuture = storeImageInFirebase(image);
+     Future<String> logoUrlFuture = storeImageInFirebase(logo);
+    Future<String> videoUrlFuture = storeImageInFirebase(video);
     var scaffold = Scaffold(
       //  drawer:const BackButton(
       //   //  backgroundColor: Colors.white,
@@ -52,95 +78,6 @@ class _CompanyState extends State<Company> {
 
 
 
-      appBar: AppBar(
-
-        backgroundColor:Color.fromARGB(255, 255, 255, 255),
-         leading: IconButton(
-          
-          icon: Icon(Icons.arrow_back),
-          onPressed:()=>{
-            if(sector == 'Bank'){
-              Navigator.push(
-              context,
-               TransparentRoute(
-               
-                page:  BankOptions(),
-              ),
-            ),
-            },
-             if(sector == 'Insurance'){
-              Navigator.push(
-              context,
-              TransparentRoute(
-               
-                page:  Insurance_Options(),
-              ),
-            ),
-            },
-             if(sector == 'Micro Finance'){
-              Navigator.push(
-              context,
-               TransparentRoute(
-               
-                page:  MicroFinance_Options(),
-              ),
-            ),
-            },
-             if(sector == 'FinTech'){
-              Navigator.push(
-              context,
-              TransparentRoute(
-               
-                page:  Fintech_Options(),
-              ),
-            ),
-            },
-            //   if(sector == 'Telecom'){
-            //   Navigator.push(
-            //   context,
-            //    TransparentRoute(
-               
-            //     page:  Telecom_Options(),
-            //   ),
-            // ),
-            // },
-              if(sector == 'Capital Goods'){
-              Navigator.push(
-              context,
-              TransparentRoute(
-               
-                page:  SavingAndCredit(),
-              ),
-            ),
-            },
-           
-            }
-          ),
-        // padding: const EdgeInsets.all(16.0), // Add padding on all sides
-    shape: RoundedRectangleBorder(
-
-      borderRadius: BorderRadius.circular(30.0), // Set border radius
-    ),
-       
-        title: Text(
-          sector,
-          style: TextStyle(
-           color: Colors.black,
-           fontWeight: FontWeight.bold,
-           fontSize: 18,
-          ),
-        ),
-       //should be replace by botton
-     actions: [
-          Padding(padding: EdgeInsets.only(right: 20),
-         child:  SvgPicture.asset('assets/images/chamber_icon.svg')
-          ,),
-         
-    ],
-        elevation: 0.0,//remove shadow
-        centerTitle: true,
-      ),
-      
       body: ListView(
        children: [ 
          Padding(
@@ -167,9 +104,24 @@ class _CompanyState extends State<Company> {
                        padding: const EdgeInsets.only(top: 4.0),
                        child: Column(
                          children: [
-                             Image.asset(logo,
-                                      width:MediaQuery.of(context).size.width * 0.20,
-                                      ),
+                               Container(
+                                  width:MediaQuery.of(context).size.width * 0.20,
+                                child: FutureBuilder<String>(
+                                   future: logoUrlFuture,
+                                   builder: (context, snapshot) {
+                                     if (snapshot.hasData) {
+                                       return Image.network(snapshot.data!); 
+                                       // print("test");// Use the downloaded URL
+                                     } else if (snapshot.hasError) {
+                                       return Text('Error: ${snapshot.error}'); // Handle errors
+                                     }
+                               
+                                     // Display a loading indicator while waiting
+                                     return CircularProgressIndicator();
+                                   },
+                                 ),
+                               
+                               ),
                            Text(name,
               style: const TextStyle(
                     fontSize: 16, // Increase font size for heading-like appearance
@@ -194,15 +146,60 @@ class _CompanyState extends State<Company> {
         decoration: BoxDecoration(borderRadius:BorderRadius.circular(20)),
        child: Padding(padding: EdgeInsets.all(30),
        child:Center(
-          child: VideoPlayerWidget(videoUrl: video,),
+        child: Container(
+            //  width:MediaQuery.of(context).size.width * 0.20,
+           child: FutureBuilder<String>(
+    future: videoUrlFuture,
+    builder: (context, snapshot) {
+      if (snapshot.hasData) {
+       return VideoPlayerWidget(videoUrl:snapshot.data!);
+        // return Image.network(snapshot.data!); 
+        // print("test");// Use the downloaded URL
+      } else if (snapshot.hasError) {
+        return Text('Error: ${snapshot.error}'); // Handle errors
+      }
+
+      // Display a loading indicator while waiting
+      return CircularProgressIndicator();
+    },
+  ),
+
+          ),
+          // child: VideoPlayerWidget(videoUrl: video,),
         ))
         ),
+        if(image!='')
         Padding(
           padding: const EdgeInsets.only(left: 20,right: 20,bottom: 16),
-          child: Container(
-           child:Image.asset(image),
+          child:  Container(
+            //  width:MediaQuery.of(context).size.width * 0.20,
+           child: FutureBuilder<String>(
+    future: imageUrlFuture,
+    builder: (context, snapshot) {
+      if (snapshot.hasData) {
+        return Image.network(snapshot.data!); 
+        // print("test");// Use the downloaded URL
+      } else if (snapshot.hasError) {
+        return Text('Error: ${snapshot.error}'); // Handle errors
+      }
+
+      // Display a loading indicator while waiting
+      return CircularProgressIndicator();
+    },
+  ),
+
           ),
         ),
+        Padding(padding: EdgeInsets.only(left: 20,right: 20),
+        child: Column(
+          children: [
+        Text("Sector: $sector"), 
+        Text("Sub Sector: $sub_sector"),
+          ],
+        ),
+        ),
+       
+        if(profile !='')
          Container(
                     width: 200,
 
@@ -273,29 +270,7 @@ class _CompanyState extends State<Company> {
                        ),
                         SizedBox(height: 5,),
                       
-                        if(fax !="")
                        
-                       Padding(
-                         padding: const EdgeInsets.only(left: 20.0,right: 20),
-                         child: Row(
-                           children: [
-                              Container(
-                               // width: 10,
-                               // height: 10,
-                               decoration: BoxDecoration(
-                         
-                             color: Color.fromARGB(255, 255, 255, 255),
-                                            
-                                            borderRadius:BorderRadius.circular(999), // Set border width
-                                            
-                                              ),
-                               child: SvgPicture.asset('assets/images/vector3.svg',width: 10,height: 10,)),
-                             SizedBox(width: 10,),
-                             Text(fax,softWrap: true,overflow: TextOverflow.ellipsis,),
-                           ],
-                         ),
-                       ),
-                        SizedBox(height: 5,),
                          if(email !="")
                       
                        Padding(
@@ -329,7 +304,7 @@ class _CompanyState extends State<Company> {
             icon: const Icon(Icons.share),
             onPressed: () async {
               // Replace with your actual sharing logic
-              final text = 'Company Name: $name\n Phone: $tel\n Email: $email\n Website: $website\n Fax: $fax\n';
+              final text = ' CompanyDescription Name: $name\n Sector: $sector\n Sub-sector: $sub_sector Sub Phone: $tel\n Email: $email\n Website: $website\n ';
               await Share.share(text);
             },
           ),
@@ -341,7 +316,8 @@ class _CompanyState extends State<Company> {
     
       
      );
-     
+   
     return scaffold;
+    
   }
 }

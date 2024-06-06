@@ -4,15 +4,15 @@ import 'package:provider/provider.dart';
 
   
 
-class ExpandedPanel extends StatefulWidget {
+class ExpandedPanelUseFullAddress extends StatefulWidget {
   final List<Map<String,dynamic>> data;
-  const ExpandedPanel({super.key,required this.data});
+  const ExpandedPanelUseFullAddress({super.key,required this.data});
 
   @override
-  State<ExpandedPanel> createState() => _ExpandedPanelState();
+  State<ExpandedPanelUseFullAddress> createState() => _ExpandedPanelUseFullAddressState();
 }
 
-class _ExpandedPanelState extends State<ExpandedPanel> {
+class _ExpandedPanelUseFullAddressState extends State<ExpandedPanelUseFullAddress> {
   // final List<Map<String,dynamic>> _data =[
   //   {
   //     "title":"item 1",
