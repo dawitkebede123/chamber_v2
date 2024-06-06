@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1037511136316",
+    "firebase_url": "https://chamber-60982-default-rtdb.firebaseio.com",
+    "project_id": "chamber-60982",
+    "storage_bucket": "chamber-60982.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037511136316:android:ad07149f6f389c73ef1f39",
+        "android_client_info": {
+          "package_name": "com.example.chamber_of_commerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPl-sWg1aBYbphP4rlY8f64n66Bx7maZc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

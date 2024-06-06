@@ -1,0 +1,353 @@
+name: chamber_of_commerce
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.4 <4.0.0'
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+  provider : ^6.0.0
+  video_player: ^2.8.6
+  share_plus: ^2.0.15 
+
+ 
+   
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.6
+  firebase_storage: ^11.7.5
+  firebase_core: ^2.31.0
+  firebase_database: ^10.5.5
+  flutter_svg: ^2.0.10
+  carousel_slider: ^4.2.1
+  smooth_page_indicator: ^1.1.0
+  url_launcher: ^6.2.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons: "^0.13.1"
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^3.0.0
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/transition.svg"
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/almanac_lists/adv_logo/nib.jpg
+    - assets/images/almanac_lists/adv_logo/tsedey.jpg
+    - assets/images/chamber-logo.svg
+    - assets/images/adv.png
+    - assets/images/advCompany.png
+    - assets/images/logo_perfect.png
+    - assets/images/almanac.png
+    - assets/images/business.png
+    # - assets/images/almanac_small.png
+    # - assets/images/business_small.png
+    - assets/images/email.png
+    - assets/images/discovery.png
+    - assets/images/facebook.png
+    - assets/images/favorite.png
+    - assets/images/home.png
+    - assets/images/telegram.png
+    - assets/images/x.png
+    - assets/images/banner.png
+    - assets/images/business_Adv.png
+    - assets/images/business_large.svg
+    - assets/images/almanac_large.svg
+    - assets/images/home.svg
+    - assets/images/discovery.svg
+    - assets/images/business_small.svg
+    - assets/images/almanac_small.svg
+    - assets/images/favorite.svg
+    - assets/images/adv_medroc.svg
+    - assets/images/agriculture.svg
+    - assets/images/capital_goods.svg
+    - assets/images/finance.svg
+    - assets/images/trade.svg
+    - assets/images/awash.svg
+    - assets/images/air.svg 
+    - assets/images/dashen.svg 
+    - assets/images/chamber_logo_about_page.svg
+    - assets/images/chamber_icon.svg
+    - assets/images/trash.svg
+    - assets/images/mail_icon.svg
+    - assets/images/fax_icon.svg
+    - assets/images/web_icon.svg
+    - assets/images/time_icon.svg
+    - assets/images/address_icon.svg
+    - assets/images/trash.svg
+    - assets/images/awash_logo.svg
+    - assets/images/phone_icon.svg
+    - assets/images/discovery_page_icons/banks.svg
+    - assets/images/company_icon/company_awash.svg
+    - assets/video/Awash.mp4
+    - assets/images/social_media_icons/email.svg
+    - assets/images/social_media_icons/facebook.svg
+    - assets/images/social_media_icons/logo.svg
+    - assets/images/social_media_icons/telegram.svg
+    - assets/images/social_media_icons/twitter.svg
+    - assets/images/social_media_icons/linkedin.svg
+    - assets/images/Adv_slider.svg
+    - assets/images/almanac_lists/1.svg
+    - assets/images/almanac_lists/3.svg
+    - assets/images/almanac_lists/2.svg
+    - assets/images/almanac_lists/4.svg
+    - assets/images/almanac_lists/6.svg
+    - assets/images/almanac_lists/5.svg
+    - assets/images/business_lists/1.svg
+    - assets/images/business_lists/2.svg
+    - assets/images/business_lists/3.svg
+    - assets/images/business_lists/4.svg
+    - assets/images/business_lists/5.svg
+    - assets/images/business_lists/6.svg
+    - assets/images/business_lists/7.svg
+    - assets/images/business_lists/8.svg
+    - assets/images/business_lists/9.svg
+    - assets/images/business_lists/10.svg
+    - assets/images/business_lists/11.svg
+    - assets/images/business_lists/12.svg
+    - assets/images/business_lists/13.svg
+    - assets/images/business_lists/14.svg
+    - assets/images/almanac_lists/company_profile_image.svg
+    - assets/images/business_lists/sample/1.svg
+    - assets/images/business_lists/sample/2.svg
+    - assets/images/business_lists/sample/3.svg
+    - assets/images/business_lists/sample/4.svg
+    - assets/images/business_lists/sample/5.svg
+    - assets/images/business_lists/sample/6.svg
+    - assets/images/business_lists/sample/mengesha.svg
+    - assets/images/business_lists/sample/tomoca.svg
+    - assets/images/business_lists/adv_logo/1.jpg
+    - assets/images/business_lists/adv_logo/2.jpg
+    - assets/images/business_lists/adv_logo/3.jpg
+    - assets/images/business_lists/adv_logo/4.jpg
+    - assets/images/business_lists/adv_logo/5.jpg
+    - assets/images/business_lists/adv_logo/7.jpg
+    - assets/images/business_lists/adv_logo/8.jpg
+    - assets/images/business_lists/adv_logo/9.jpg
+    - assets/images/business_lists/adv_logo/10.jpg
+    - assets/images/business_lists/adv_logo/11.jpg
+    - assets/images/business_lists/adv_logo/12.jpg
+    - assets/images/business_lists/adv_logo/13.jpg
+    - assets/images/business_lists/adv_logo/14.jpg
+    - assets/images/business_lists/adv_logo/15.jpg
+    - assets/images/business_lists/adv_logo/16.jpg
+    - assets/images/business_lists/adv_logo/17.jpg
+    - assets/images/business_lists/adv_logo/18.jpg
+    - assets/images/business_lists/adv_logo/19.jpg
+    - assets/images/business_lists/adv_logo/20.jpg
+    - assets/images/business_lists/adv_logo/21.jpg
+    - assets/images/business_lists/adv_logo/22.jpg
+    - assets/images/business_lists/adv_logo/23.jpg
+    - assets/images/business_lists/adv_logo/24.jpg
+    - assets/images/business_lists/adv_logo/25.jpg
+    - assets/images/business_lists/adv_logo/26.jpg
+    - assets/images/business_lists/adv_logo/27.jpg
+    - assets/images/business_lists/adv_logo/28.jpg
+    - assets/images/business_lists/adv_logo/29.jpg
+    - assets/images/business_lists/adv_logo/30.jpg
+    - assets/images/business_lists/adv_logo/31.jpg
+    - assets/images/business_lists/adv_logo/32.jpg
+    - assets/images/business_lists/adv_logo/33.jpg
+    - assets/images/business_lists/adv_logo/34.jpg
+    - assets/images/business_lists/adv_logo/35.jpg
+    - assets/images/business_lists/adv_logo/36.jpg
+    - assets/images/business_lists/adv_logo/37.jpg
+    - assets/images/business_lists/adv_logo/38.jpg
+    - assets/images/business_lists/adv_logo/39.jpg
+    - assets/images/business_lists/adv_logo/40.jpg
+    - assets/images/business_lists/adv_logo/41.jpg
+    - assets/images/business_lists/adv_logo/42.jpg
+    - assets/images/business_lists/adv_logo/43.jpg
+    - assets/images/almanac_lists/bank_logos/1.png
+    - assets/images/almanac_lists/bank_logos/2.png
+    - assets/images/almanac_lists/bank_logos/3.png
+    - assets/images/almanac_lists/bank_logos/4.png
+    - assets/images/almanac_lists/bank_logos/5.png
+    - assets/images/almanac_lists/bank_logos/6.png
+    - assets/images/almanac_lists/bank_logos/7.png
+    - assets/images/almanac_lists/bank_logos/8.png
+    - assets/images/almanac_lists/bank_logos/9.png
+    - assets/images/almanac_lists/bank_logos/10.png
+    - assets/images/almanac_lists/bank_logos/11.png
+    - assets/images/almanac_lists/bank_logos/12.png
+    - assets/images/almanac_lists/bank_logos/13.png
+    - assets/images/almanac_lists/bank_logos/14.jpg
+    - assets/images/almanac_lists/insurance_logos/1.png
+    - assets/images/almanac_lists/insurance_logos/2.png
+    - assets/images/almanac_lists/insurance_logos/3.png
+    - assets/images/almanac_lists/insurance_logos/4.png
+    - assets/images/almanac_lists/insurance_logos/5.png
+    - assets/images/almanac_lists/insurance_logos/6.png
+    - assets/images/almanac_lists/insurance_logos/7.png
+    - assets/images/almanac_lists/micro_finance_logos/1.png
+    - assets/images/almanac_lists/micro_finance_logos/2.png
+    - assets/images/almanac_lists/fintech_logos/fintech.png
+    - assets/images/almanac_lists/fintech_logos/fintech2.png
+    - assets/images/almanac_lists/telecom_logos/mpesa.png
+    - assets/images/almanac_lists/telecom_logos/telebirr.png
+    - assets/images/almanac_lists/company/images/awash.png
+    - assets/images/almanac_lists/adv/1.jpg
+    - assets/images/almanac_lists/adv/2.jpg
+    - assets/images/almanac_lists/adv/3.jpg
+    - assets/images/almanac_lists/adv/4.jpg
+    - assets/images/almanac_lists/adv/5.jpg
+    - assets/images/almanac_lists/adv/6.jpg
+    - assets/images/almanac_lists/adv/7.jpg
+    - assets/images/almanac_lists/adv/8.jpg
+    - assets/images/almanac_lists/adv/9.jpg
+    - assets/images/almanac_lists/adv/10.jpg
+    - assets/images/almanac_lists/adv/11.jpg
+    - assets/images/almanac_lists/adv/12.jpg
+    - assets/images/almanac_lists/adv/13.jpg
+    - assets/images/almanac_lists/adv/14.jpg
+    - assets/images/almanac_lists/adv/15.jpg
+    - assets/images/almanac_lists/adv/16.jpg
+    - assets/images/almanac_lists/adv/17.jpg
+    - assets/images/almanac_lists/adv/18.jpg
+    - assets/images/almanac_lists/adv/19.jpg
+    - assets/images/almanac_lists/adv/20.jpg
+    - assets/images/almanac_lists/adv/21.jpg
+    - assets/images/almanac_lists/adv/22.jpg
+    - assets/images/almanac_lists/adv/23.jpg
+    - assets/images/almanac_lists/adv/24.jpg
+    - assets/images/almanac_lists/adv/25.jpg
+    - assets/video/united.mp4
+    - assets/video/dashen.mp4
+    - assets/video/ethio.mp4
+    - assets/video/Oromia.mp4
+    - assets/video/Tsedey.mp4
+    - assets/video/Birhan.mp4
+    - assets/video/Kacha.mp4
+    - assets/video/Ethswitch.mp4
+    - assets/video/Awash_Insurance.mp4
+    - assets/video/nib.mp4
+    - assets/images/almanac_lists/adv_logo/ethio.jpg
+    - assets/images/almanac_lists/adv_logo/awash.jpg
+    - assets/images/almanac_lists/adv_logo/kacha.jpg
+    - assets/icon.png
+    - assets/transition.svg
+    - assets/images/vector.svg
+    - assets/images/vector1.svg
+    - assets/images/vector2.svg
+    - assets/images/vector3.svg
+    - assets/video/business/1.mp4
+    - assets/video/business/ik.mp4
+    - assets/video/business/2.mp4
+    - assets/video/business/3.mp4
+    - assets/video/business/4.mp4
+    - assets/video/business/5.mp4
+    - assets/video/business/6.mp4
+    - assets/video/business/7.mp4
+    - assets/video/business/8.mp4
+    - assets/video/business/9.mp4
+    - assets/video/business/10.mp4
+    - assets/video/business/11.mp4
+    - assets/video/business/12.mp4
+    - assets/video/business/13.mp4
+    - assets/video/business/14.mp4
+    - assets/video/business/15.mp4
+    - assets/video/business/16.mp4
+    - assets/video/business/17.mp4
+    - assets/video/business/18.mp4
+    - assets/video/business/19.mp4
+    - assets/video/business/20.mp4
+    - assets/video/business/21.mp4
+    - assets/video/business/22.mp4
+    - assets/video/business/23.mp4
+    - assets/video/business/24.mp4
+    - assets/video/business/25.mp4
+    - assets/video/business/26.mp4
+    - assets/video/business/28.mp4
+    - assets/video/business/29.mp4
+    - assets/video/business/30.mp4
+    - assets/video/business/31.mp4
+    - assets/video/business/32.mp4
+    - assets/video/business/33.mp4
+    - assets/video/business/34.mp4
+    - assets/video/business/35.mp4
+    - assets/video/business/36.mp4
+    - assets/video/business/37.mp4
+    - assets/sg.jpg
+    - assets/president.jpg
+    
+    
+
+
+
+
+
+    # - images/a_dot_ham.jpeg
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: fonts/Poppins-Bold.ttf
+          weight: 700
+        - asset: fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: fonts/Poppins-Regular.ttf
+          weight: 400
+
+          # 
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
