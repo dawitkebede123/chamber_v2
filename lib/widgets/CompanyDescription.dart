@@ -189,18 +189,18 @@ class _CompanyDescriptionState extends State<CompanyDescription> {
     child: Center(
       child: Stack( // Use a Stack to conditionally display content
         children: [
-          FutureBuilder<String>(
-            future: imageUrlFutureGif,
-            builder: (context, snapshot) {
-              if (snapshot.hasData && snapshot.data!.toLowerCase().endsWith('.gif')) {
-                // Display GIF image
-                print('gif');
-                return Image.network(snapshot.data!);
-              } else {
-                return Container(); // Placeholder for non-GIF content
-              }
-            },
-          ),
+          // FutureBuilder<String>(
+          //   future: imageUrlFutureGif,
+          //   builder: (context, snapshot) {
+          //     if (snapshot.hasData && snapshot.data!.toLowerCase().endsWith('.gif')) {
+          //       // Display GIF image
+          //       print('gif');
+          //       return Image.network(snapshot.data!);
+          //     } else {
+          //       return Container(); // Placeholder for non-GIF content
+          //     }
+          //   },
+          // ),
           FutureBuilder<String>(
             future: videoUrlFuture,
             builder: (context, snapshot) {
