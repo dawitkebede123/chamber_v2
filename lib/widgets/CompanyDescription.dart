@@ -32,7 +32,45 @@ class _CompanyDescriptionState extends State<CompanyDescription> {
    Future<String> storeImageInFirebase(String fileName) async {
   try {
     final storage  = FirebaseStorage.instance.ref();
-       final images = storage.child('media');
+       final images = storage.child('image');
+       final imageRef = images.child(fileName);
+       	
+
+
+
+       final networkImageUrl = await imageRef.getDownloadURL();
+      //  print(networkImageUrl);
+    return networkImageUrl;
+  } on FirebaseException catch (e) {
+    // Handle potential errors
+    print('Error storing image: ${e.code} - ${e.message}');
+    return ''; // Or throw an exception for further handling
+  }
+}  
+
+ Future<String> storeLogoInFirebase(String fileName) async {
+  try {
+    final storage  = FirebaseStorage.instance.ref();
+       final images = storage.child('logo');
+       final imageRef = images.child(fileName);
+       	
+
+
+
+       final networkImageUrl = await imageRef.getDownloadURL();
+      //  print(networkImageUrl);
+    return networkImageUrl;
+  } on FirebaseException catch (e) {
+    // Handle potential errors
+    print('Error storing image: ${e.code} - ${e.message}');
+    return ''; // Or throw an exception for further handling
+  }
+}  
+
+ Future<String> storeVideoInFirebase(String fileName) async {
+  try {
+    final storage  = FirebaseStorage.instance.ref();
+       final images = storage.child('video');
        final imageRef = images.child(fileName);
        	
 
@@ -61,12 +99,13 @@ class _CompanyDescriptionState extends State<CompanyDescription> {
     String email = widget.detail["E-mail"].toString();
     
     final website = widget.detail["Web"];
-    final sector = widget.detail["Field Of Business"];
-    final sub_sector = widget.detail["SIT+A1:I15802C Description"];
+    final sector = widget.detail["Sector"];
+    final sub_sector = widget.detail["Sub-Sector"];
     // String fax = widget.detail["fax"].toString();
      Future<String> imageUrlFuture = storeImageInFirebase(image);
-     Future<String> logoUrlFuture = storeImageInFirebase(logo);
-    Future<String> videoUrlFuture = storeImageInFirebase(video);
+     Future<String> imageUrlFutureGif = storeImageInFirebase(video);
+     Future<String> logoUrlFuture = storeLogoInFirebase(logo);
+    Future<String> videoUrlFuture = storeVideoInFirebase(video);
     var scaffold = Scaffold(
       //  drawer:const BackButton(
       //   //  backgroundColor: Colors.white,
@@ -139,35 +178,47 @@ class _CompanyDescriptionState extends State<CompanyDescription> {
         // child:Text("Almanac / Bank / Awash Bank ")
 
         // ),
+        
         SizedBox(height: 20,),
         if(video!="")
-       Container(
-          height: 200,
-        decoration: BoxDecoration(borderRadius:BorderRadius.circular(20)),
-       child: Padding(padding: EdgeInsets.all(30),
-       child:Center(
-        child: Container(
-            //  width:MediaQuery.of(context).size.width * 0.20,
-           child: FutureBuilder<String>(
-    future: videoUrlFuture,
-    builder: (context, snapshot) {
-      if (snapshot.hasData) {
-       return VideoPlayerWidget(videoUrl:snapshot.data!);
-        // return Image.network(snapshot.data!); 
-        // print("test");// Use the downloaded URL
-      } else if (snapshot.hasError) {
-        return Text('Error: ${snapshot.error}'); // Handle errors
-      }
-
-      // Display a loading indicator while waiting
-      return CircularProgressIndicator();
-    },
-  ),
-
+         Container(
+  height: 200,
+  decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+  child: Padding(
+    padding: EdgeInsets.all(30),
+    child: Center(
+      child: Stack( // Use a Stack to conditionally display content
+        children: [
+          FutureBuilder<String>(
+            future: imageUrlFutureGif,
+            builder: (context, snapshot) {
+              if (snapshot.hasData && snapshot.data!.toLowerCase().endsWith('.gif')) {
+                // Display GIF image
+                print('gif');
+                return Image.network(snapshot.data!);
+              } else {
+                return Container(); // Placeholder for non-GIF content
+              }
+            },
           ),
-          // child: VideoPlayerWidget(videoUrl: video,),
-        ))
-        ),
+          FutureBuilder<String>(
+            future: videoUrlFuture,
+            builder: (context, snapshot) {
+              if (snapshot.hasData && !snapshot.data!.toLowerCase().endsWith('.gif')) {
+                // Display video
+                return VideoPlayerWidget(videoUrl: snapshot.data!);
+              } else {
+                return Container(); // Placeholder for non-video content
+              }
+            },
+          ),
+        ],
+      ),
+    ),
+  ),
+),
+
+
         if(image!='')
         Padding(
           padding: const EdgeInsets.only(left: 20,right: 20,bottom: 16),
@@ -193,8 +244,15 @@ class _CompanyDescriptionState extends State<CompanyDescription> {
         Padding(padding: EdgeInsets.only(left: 20,right: 20),
         child: Column(
           children: [
-        Text("Sector: $sector"), 
-        Text("Sub Sector: $sub_sector"),
+
+        Row(
+          children: [
+            Text("Sector: $sector",textAlign: TextAlign.start,),
+          ],
+        ), 
+        
+        
+        Text("Sub Sector: $sub_sector",textAlign: TextAlign.start,),
           ],
         ),
         ),

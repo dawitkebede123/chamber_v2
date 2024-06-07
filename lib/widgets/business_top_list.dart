@@ -42,6 +42,7 @@ class _Business_Top_ListState extends State<Business_Top_List> {
      "website":"http://www.abbahawa.com",
      "fax":""
    },
+   //Mesert
     {
      "sector":"EXPORT",
      "name": "ABAT IMPORT AND EXPORT PLC",
@@ -414,9 +415,10 @@ class _Business_Top_ListState extends State<Business_Top_List> {
      "website":"http://WWW.BELAYABFOODSPRODUCTION.COM",
      "fax":""
    },
+  //  agl
     {
      "sector":"EXPORT",
-     "name": "BESHANFER TRADING PLC",
+     "name": "TRADING PLC",
      "logo": "",
      "adv_image":"beshenfer copy.png",
      "adv_video":"",
@@ -478,7 +480,7 @@ class _Business_Top_ListState extends State<Business_Top_List> {
      "sector":"IMPORT",
      "name": "DA IMPORT",
      "logo": "",
-     "adv_image":"da IMPORT copy.png",
+     "adv_image":"copy.png",
      "adv_video":"",
      "profile": "",
      "tel": "0114426188",
@@ -656,6 +658,7 @@ class _Business_Top_ListState extends State<Business_Top_List> {
      "website":"",
      "fax":""
    },
+   //BDO
    {
      "sector":"manufacturing",
      "name": "buluko textile",
